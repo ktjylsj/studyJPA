@@ -19,19 +19,42 @@ public class JpaMain {
         tx.begin();
 
         // CREATE
-        /*try{
-            Member member = new Member();
-            member.setId(1L);
-            member.setName("HelloA");
+        try{
+            // 비영속
+            /*Member member = new Member();
+            member.setId(101L);
+            member.setName("HelloJPA");
 
+            // 영속
+            System.out.println("=== BEFORE ===");
             em.persist(member);
+            System.out.println("=== AFTER ===");*/
+
+            /*// 영속
+            Member findMember1 = em.find(Member.class, 101L);
+            Member findMember2 = em.find(Member.class, 101L);
+
+            // 동일성 비교 true
+            System.out.println("result = " + (findMember1 == findMember2));*/
+
+            // 영속
+            /*Member member1 = new Member(150L, "A");
+            Member member2 = new Member(160L, "B");
+
+            em.persist(member1);
+            em.persist(member2);*/
+            Member memberA = em.find(Member.class, 150L);
+
+            memberA.setName("ZZZZZ");
+
+            System.out.println("====================================");
 
             tx.commit();
         }catch (Exception e){
             tx.rollback();
         }finally {
             em.close();
-        }*/
+        }
 
         // READ
         /*try{
@@ -56,7 +79,7 @@ public class JpaMain {
         }*/
 
         // UPDATE
-        try{
+        /*try{
             Member findMember = em.find(Member.class, 1L);
             findMember.setName("HelloC");
 
@@ -65,7 +88,7 @@ public class JpaMain {
             tx.rollback();
         }finally {
             em.close();
-        }
+        }*/
 
         emf.close();
     }
