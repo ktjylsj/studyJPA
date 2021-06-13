@@ -43,9 +43,14 @@ public class JpaMain {
 
             em.persist(member1);
             em.persist(member2);*/
-            Member memberA = em.find(Member.class, 150L);
+            /*Member memberA = em.find(Member.class, 150L);
 
-            memberA.setName("ZZZZZ");
+            memberA.setName("ZZZZZ");*/
+
+            Member member = new Member(200L, "member2020");
+            em.persist(member);
+
+            em.flush();
 
             System.out.println("====================================");
 
