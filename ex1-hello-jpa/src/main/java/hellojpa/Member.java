@@ -2,8 +2,10 @@ package hellojpa;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+// @Table(name = "MBR")    // 테이블명을 바꾸고 싶을 때 사용
 public class Member {
     @Id
     private Long id;
