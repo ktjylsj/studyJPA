@@ -39,6 +39,11 @@ public class JpaMain {
             Team findTeam = findMember.getTeam();
             System.out.println("findTeam = " + findTeam.getName());
 
+            List<Member> members = findTeam.getMembers();
+            for(Member m : members){
+                System.out.println("m = " + m.getUsername());
+            }
+
             // 100번 팀이 있다는 가정 하에 사용
             // Team newTeam = em.find(Team.class, 100L);
             // findMember.setTeam(newTeam);
