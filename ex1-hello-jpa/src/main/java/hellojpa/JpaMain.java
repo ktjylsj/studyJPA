@@ -25,28 +25,21 @@ public class JpaMain {
 
             Member member = new Member();
             member.setUsername("member1");
-            // member.setTeamId(team.getId());
-            member.setTeam(team);
+            member.setTeam(team);           // 연관관계에서 주인에게 설정
             em.persist(member);
+
+            // team.getMembers().add(member);
+            // member.changeTeam(team);
+            team.addMember(member);
 
             em.flush();
             em.clear();
 
-            Member findMember = em.find(Member.class, member.getId());
-
-            /*Long findTeamId = findMember.getTeamId();
-            Team findTeam = em.find(Team.class, findTeamId);*/
-            Team findTeam = findMember.getTeam();
-            System.out.println("findTeam = " + findTeam.getName());
-
+            Team findTeam = em.find(Team.class, team.getId());
             List<Member> members = findTeam.getMembers();
-            for(Member m : members){
+            for (Member m : members) {
                 System.out.println("m = " + m.getUsername());
             }
-
-            // 100번 팀이 있다는 가정 하에 사용
-            // Team newTeam = em.find(Team.class, 100L);
-            // findMember.setTeam(newTeam);
 
             tx.commit();
         }catch (Exception e){
